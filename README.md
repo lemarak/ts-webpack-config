@@ -6,4 +6,4 @@
 
 ### npm start
 
-#### 2 - types
+#### lesson 02 - types
