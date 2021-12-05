@@ -5,3 +5,5 @@
 ### npm run build
 
 ### npm start
+
+#### 2 - types
