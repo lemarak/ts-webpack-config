@@ -102,10 +102,10 @@ const man: Human = {
   },
 };
 
-// 5 Compositions d'interfaces et classes
+// 5 Compositions d'interfaces et classes **********
 interface Vehicule {
   name: string;
-  drive: () => void;
+  drive(): void;
 }
 interface Engine {
   type: string;
@@ -123,20 +123,33 @@ const newCar: Car = {
 };
 
 class CarClasse implements Vehicule, Engine {
+  drive(): void {
+    console.log("Je conduis...");
+  }
   constructor(
     public name: string,
     public type: string,
     public wheels: number
   ) {}
-  drive = () => {};
 }
 
-const myCar: CarClasse = {
-  name: "clio",
-  type: "electric",
-  wheels: 4,
-  drive: () => {
-    console.log("Je conduis");
-  },
-};
+let myCar: CarClasse = new CarClasse("clio", "electric", 4);
 myCar.drive();
+
+// 6 Extension d'une classe par une interface **********
+
+class Player {
+  constructor(private isPlaying: boolean) {}
+}
+
+interface PlayerBasic extends Player {
+  play: () => void;
+}
+
+class Mp3Player extends Player implements PlayerBasic {
+  play() {}
+}
+
+// class Game implements PlayerBasic {
+//   play(){}
+// }
