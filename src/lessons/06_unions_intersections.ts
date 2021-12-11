@@ -166,3 +166,81 @@ function move2(a: Bird | Whale) {
     a.swim();
   }
 }
+
+// 04 - Les intersections **********
+
+interface User4 {
+  username: string;
+}
+
+interface Moderator4 {
+  deleteMessage: () => void;
+  editMessage: () => void;
+}
+
+interface AddContent4 {
+  addMessage: () => void;
+}
+
+let newUser4: User4 & AddContent4 = {
+  username: "jean",
+  addMessage: () => {
+    console.log("new message");
+  },
+};
+
+let admin: User4 & AddContent4 & Moderator4 = {
+  username: "jocelyne",
+  addMessage: () => {
+    console.log("Bienvenue");
+  },
+  deleteMessage: () => {},
+  editMessage: () => {},
+};
+
+interface BasicUser4 extends User4, AddContent4 {}
+interface Admin4 extends User4, Moderator4, AddContent4 {}
+
+// 05 - Nouveaux opérateurs
+
+type User5 = {
+  username: string;
+  age: number;
+  address?: {
+    city?: {
+      name: string;
+      population?: number;
+    };
+  };
+};
+
+const myUser5: User5 = {
+  username: "paulette",
+  age: 21,
+};
+
+// const city = myUser5.address.city;  // Error
+const city = myUser5.address ? myUser5.address.city : null;
+
+if (myUser5 && myUser5.address && myUser5.address.city) {
+  // Un peu long ;)
+}
+const population = myUser5.address?.city?.population; //Bonne méthode
+console.log("population :", population);
+
+if (myUser5.address?.city?.population) {
+  console.log("ok");
+} else {
+  console.log("ko");
+}
+
+const address = myUser5.address || "unknown";
+console.log("Adresse ", address);
+
+const myUser51: User5 = {
+  username: "",
+  age: 21,
+};
+
+const username5 = myUser51.username ?? "guest";
+console.log("username ", username5);
