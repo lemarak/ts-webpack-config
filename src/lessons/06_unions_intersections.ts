@@ -244,3 +244,38 @@ const myUser51: User5 = {
 
 const username5 = myUser51.username ?? "guest";
 console.log("username ", username5);
+
+// 06 - Alias de type - **********
+
+type UserStatusType6 = "online" | "offline" | "busy";
+type CustomModulo6 = 1 | 2 | 3;
+type ObjectId = string; // ex, si un objet de bdd, facilite la lecture
+type User6 = {
+  username: string;
+  age: number;
+  id: ObjectId;
+};
+
+let userStatus6: UserStatusType6 = "online";
+let newUser6: User6 = {
+  username: "Charlie",
+  age: 7,
+  id: "1",
+};
+
+function getUserStatus(user): UserStatusType6 {
+  return user.status;
+}
+
+interface Car6 {
+  seat: number;
+}
+interface Car6 {
+  wheel: number;
+}
+
+const car6: Car6 = {
+  // possibilité de merger les déclarations d'interface, impossible pour les types
+  seat: 4,
+  wheel: 3,
+};
